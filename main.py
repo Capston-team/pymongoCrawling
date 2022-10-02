@@ -42,8 +42,13 @@ def UpdateEventList():
     kt.update_one({'_id': ObjectId('6330017d0af9348ced24899f')}, {"$set": KtResultSet})
 
     # return make_response(json.dumps(resultSet, ensure_ascii=False).encode('utf-8'))
+    print("Successful Update eventList")
     return 'UpdateEventList'
 
+
+@sched.scheduled_job('interval', minutes=3)
+def timed_job():
+    print('Test log interval 3MIN')
 
 
 @app.route('/')
