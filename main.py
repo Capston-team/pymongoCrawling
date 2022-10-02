@@ -66,5 +66,5 @@ if __name__ == "__main__":
     # skt.update_one({'_id': ObjectId('633007e552ef499751ceb548')}, {"$set": skt_json})
 
     # item_details = skt.find({'_id': ObjectId('633007e552ef499751ceb548')})
-
+    sched.start()
     app.run()
