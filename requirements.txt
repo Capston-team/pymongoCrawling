@@ -1,0 +1,9 @@
+beautifulsoup4
+requests
+lxml
+selenium
+webdriver-manager
+certifi
+pymongo
+Flask
+APScheduler=3.6.3
