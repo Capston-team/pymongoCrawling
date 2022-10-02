@@ -1,4 +1,3 @@
-import json
 import os
 
 from selenium.webdriver.chromium.service import ChromiumService
@@ -12,8 +11,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-
-start = time.time()
 
 webdriver_options = webdriver.ChromeOptions()
 webdriver_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
@@ -67,5 +64,6 @@ def kt_image():
         img_list.append(img.get_attribute("src"))
 
     return img_list
+
 
 driver.close()

@@ -1,12 +1,11 @@
 from flask import Flask
-from flask import make_response
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import certifi
 from apscheduler.schedulers.blocking import BlockingScheduler
-from skt import skt_info, skt_date, skt_image
+from skt import skt_title, skt_date, skt_image
 from kt import kt_title, kt_date, kt_image
-import json
+from lg import lg_title, lg_date, lg_image
 
 sched = BlockingScheduler()
 
@@ -32,18 +31,17 @@ def UpdateEventList():
     kt = dbname['kt']
     lg = dbname['lg']
 
-    SktResultSet = dict({'title': skt_info(), 'date': skt_date(), 'img': skt_image()})
+    SktResultSet = dict({'title': skt_title(), 'date': skt_date(), 'img': skt_image()})
     KtResultSet = dict({'title': kt_title(), 'date': kt_date(), 'img': kt_image()})
-    LgResultSet = dict({})
+    LgResultSet = dict({'title': lg_title(), 'date': lg_date(), 'img': lg_image()})
 
     # items_detail = kt.find({'_id': ObjectId('6330017d0af9348ced24899f')})
 
     skt.update_one({'_id': ObjectId('633007e552ef499751ceb548')}, {"$set": SktResultSet})
     kt.update_one({'_id': ObjectId('6330017d0af9348ced24899f')}, {"$set": KtResultSet})
+    lg.update_one({'_id': ObjectId('6336ea180ad3309313d9bfc3')}, {"$set": LgResultSet})
 
-    # return make_response(json.dumps(resultSet, ensure_ascii=False).encode('utf-8'))
     print("Successful Update eventList")
-    return 'UpdateEventList'
 
 
 @sched.scheduled_job('interval', minutes=3)
@@ -52,19 +50,12 @@ def timed_job():
 
 
 @app.route('/')
-def hello_world():
+def setEventList():
     UpdateEventList()
-    return 'Hello_world'
+    return 'setEventList - Successful update event list'
 
 
 if __name__ == "__main__":
 
-    # item_details = skt.find({'_id': ObjectId('633007e552ef499751ceb548')})
-    # for item in item_details:
-    #     print(item)
-
-    # skt.update_one({'_id': ObjectId('633007e552ef499751ceb548')}, {"$set": skt_json})
-
-    # item_details = skt.find({'_id': ObjectId('633007e552ef499751ceb548')})
     sched.start()
     app.run()

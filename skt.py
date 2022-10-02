@@ -49,7 +49,7 @@ def skt_date():
 
 
 # SKT 이벤트 제목, 상세설명 크롤링
-def skt_info():
+def skt_title():
     url = "https://sktmembership.tworld.co.kr/mps/pc-bff/program/tday.do"
     response = requests.get(url)
     response.raise_for_status()
