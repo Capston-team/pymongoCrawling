@@ -17,8 +17,11 @@ start = time.time()
 
 webdriver_options = webdriver.ChromeOptions()
 webdriver_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+webdriver_options.add_argument('--no-sandbox')
 webdriver_options.add_argument('--headless')
-webdriver_options.add_argument("--disable-dev-shm-usage")
+webdriver_options.add_argument("--disable-gpu")
+webdriver_options.add_argument('--disable-dev-shm-usage')
+webdriver_options.add_argument("--window-size=1920,1080")
 
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=webdriver_options)
 driver.get('https://event.kt.com/html/event/ongoing_event_list.html')
