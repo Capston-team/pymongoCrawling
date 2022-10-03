@@ -68,4 +68,3 @@ def lg_image():
     return img_list
 
 
-driver.close()
