@@ -1,17 +1,22 @@
 import os
-import time
 
+from selenium.webdriver.chromium.service import ChromiumService
+from webdriver_manager.core.utils import ChromeType
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import time
 
 webdriver_options = webdriver.ChromeOptions()
 webdriver_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 webdriver_options.add_argument('--no-sandbox')
 webdriver_options.add_argument('--headless')
 webdriver_options.add_argument("--disable-gpu")
-webdriver_options.add_argument('--disable-dev-shm-usage')
+# webdriver_options.add_argument('--disable-dev-shm-usage')
 webdriver_options.add_argument("--window-size=1920,1080")
 
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=webdriver_options)
