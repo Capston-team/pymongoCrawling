@@ -7,7 +7,7 @@ from skt import skt_title, skt_date, skt_image
 from kt import kt_title, kt_date, kt_image
 from lg import lg_title, lg_date, lg_image
 
-sched = BlockingScheduler()
+sched = BlockingScheduler(timezone='Asia/Seoul')
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
