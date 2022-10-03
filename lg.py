@@ -18,15 +18,16 @@ webdriver_options.add_argument('--headless')
 webdriver_options.add_argument("--disable-gpu")
 webdriver_options.add_argument('--disable-dev-shm-usage')
 webdriver_options.add_argument("--window-size=1920,1080")
+webdriver_options.add_argument("--ignore-certificate-errors")
+webdriver_options.add_argument("--disable-extensions")
 
-driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=webdriver_options)
-# driver = webdriver.Chrome(executable_path=r'/Users/10cm_mocha/Downloads/chromedriver', chrome_options=webdriver_options)
+driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=webdriver_options)
+# driver = webdriver.Chrome(executable_path=r'/Users/10cm_mocha/Downloads/chromedriver', options=webdriver_options)
 driver.get('https://www.lguplus.com/benefit-event/ongoing')
 
 driver.implicitly_wait(10)
 
-membership_btn = driver.find_element(by=By.XPATH,
-                                     value='//*[@id="contentsSection"]/div/div[2]/div/div/div[1]/div[1]/ul/li[4]/a')
+membership_btn = driver.find_element(by=By.XPATH, value='//*[@id="contentsSection"]/div/div[2]/div/div/div[1]/div[1]/ul/li[4]/a')
 membership_btn.click()
 time.sleep(2)
 
@@ -72,3 +73,4 @@ def lg_image():
 
     print(img_list)
     return img_list
+

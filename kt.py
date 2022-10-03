@@ -21,6 +21,7 @@ webdriver_options.add_argument('--disable-dev-shm-usage')
 webdriver_options.add_argument("--window-size=1920,1080")
 
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=webdriver_options)
+# driver = webdriver.Chrome(executable_path=r'/Users/10cm_mocha/Downloads/chromedriver', options=webdriver_options)
 driver.get('https://event.kt.com/html/event/ongoing_event_list.html')
 
 # 암시적 대기 - 페이지가 로드될 때까지 기다리다가 실행해라.
@@ -65,3 +66,5 @@ def kt_image():
 
     return img_list
 
+
+driver.quit()
