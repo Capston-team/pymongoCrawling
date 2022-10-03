@@ -7,3 +7,4 @@ certifi
 pymongo
 Flask
 APScheduler == 3.6.3
+gunicorn
