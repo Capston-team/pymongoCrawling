@@ -5,7 +5,7 @@ import certifi
 from apscheduler.schedulers.blocking import BlockingScheduler
 from skt import skt_title, skt_date, skt_image
 from kt import kt_title, kt_date, kt_image
-# from lg import lg_title, lg_date, lg_image
+from lg import lg_title, lg_date, lg_image
 
 sched = BlockingScheduler()
 
@@ -33,13 +33,13 @@ def UpdateEventList():
 
     SktResultSet = dict({'title': skt_title(), 'date': skt_date(), 'img': skt_image()})
     KtResultSet = dict({'title': kt_title(), 'date': kt_date(), 'img': kt_image()})
-    # LgResultSet = dict({'title': lg_title(), 'date': lg_date(), 'img': lg_image()})
+    LgResultSet = dict({'title': lg_title(), 'date': lg_date(), 'img': lg_image()})
 
     # items_detail = kt.find({'_id': ObjectId('6330017d0af9348ced24899f')})
 
     skt.update_one({'_id': ObjectId('633007e552ef499751ceb548')}, {"$set": SktResultSet})
     kt.update_one({'_id': ObjectId('6330017d0af9348ced24899f')}, {"$set": KtResultSet})
-    # lg.update_one({'_id': ObjectId('6336ea180ad3309313d9bfc3')}, {"$set": LgResultSet})
+    lg.update_one({'_id': ObjectId('6336ea180ad3309313d9bfc3')}, {"$set": LgResultSet})
 
     print("Successful Update eventList")
 

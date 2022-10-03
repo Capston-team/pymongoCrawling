@@ -16,10 +16,11 @@ webdriver_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 webdriver_options.add_argument('--no-sandbox')
 webdriver_options.add_argument('--headless')
 webdriver_options.add_argument("--disable-gpu")
-# webdriver_options.add_argument('--disable-dev-shm-usage')
+webdriver_options.add_argument('--disable-dev-shm-usage')
 webdriver_options.add_argument("--window-size=1920,1080")
 
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=webdriver_options)
+# driver = webdriver.Chrome(executable_path=r'/Users/10cm_mocha/Downloads/chromedriver', chrome_options=webdriver_options)
 driver.get('https://www.lguplus.com/benefit-event/ongoing')
 
 driver.implicitly_wait(10)
@@ -39,7 +40,7 @@ def lg_title():
     for title in titles:
         title_list.append(title.text)
 
-    print(len(title_list))
+    print(title_list)
     return title_list
 
 
@@ -56,7 +57,7 @@ def lg_date():
 
         date_list.append(dateStr)
 
-    print(len(date_list))
+    print(date_list)
     return date_list
 
 
@@ -67,9 +68,7 @@ def lg_image():
 
     for img in images:
         img = img.find_element(by=By.TAG_NAME, value="img")
-        img_list.append(img)
+        img_list.append(img.get_attribute("src"))
 
-    print(len(img_list))
+    print(img_list)
     return img_list
-
-
