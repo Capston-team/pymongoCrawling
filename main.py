@@ -44,9 +44,9 @@ def UpdateEventList():
     print("Successful Update eventList")
 
 
-@sched.scheduled_job('interval', minutes=3)
-def timed_job():
-    print('Test log interval 3MIN')
+# @sched.scheduled_job('interval', minutes=3)
+# def timed_job():
+#     print('Test log interval 3MIN')
 
 
 @app.route('/')
