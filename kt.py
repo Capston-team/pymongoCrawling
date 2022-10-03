@@ -19,6 +19,8 @@ webdriver_options.add_argument('--headless')
 webdriver_options.add_argument("--disable-gpu")
 webdriver_options.add_argument('--disable-dev-shm-usage')
 webdriver_options.add_argument("--window-size=1920,1080")
+webdriver_options.add_argument("--disable-setuid-sandbox")
+webdriver_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=webdriver_options)
 # driver = webdriver.Chrome(executable_path=r'/Users/10cm_mocha/Downloads/chromedriver', options=webdriver_options)
