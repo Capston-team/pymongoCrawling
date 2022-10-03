@@ -74,3 +74,5 @@ def lg_image():
     print(img_list)
     return img_list
 
+
+driver.quit()
