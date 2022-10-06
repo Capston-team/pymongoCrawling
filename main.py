@@ -234,5 +234,5 @@ def setEventList():
 
 
 if __name__ == "__main__":
-    # sched.start()
+    sched.start()
     app.run(host="0.0.0.0")
