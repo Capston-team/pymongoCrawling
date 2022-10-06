@@ -93,8 +93,7 @@ def skt_image():
 
     return img_link
 
-    # category = soup.select('.img-box> img')
-    # print(category)
+
 
 
 

@@ -35,7 +35,11 @@ def UpdateEventList():
     KtResultSet = dict({'title': kt_title(), 'date': kt_date(), 'img': kt_image()})
     LgResultSet = dict({'title': lg_title(), 'date': lg_date(), 'img': lg_image()})
 
-    # items_detail = kt.find({'_id': ObjectId('6330017d0af9348ced24899f')})
+    # print(SktResultSet)
+    # print('\n\n')
+    # print(KtResultSet)
+    # print('\n\n')
+    # print(LgResultSet)
 
     skt.update_one({'_id': ObjectId('633007e552ef499751ceb548')}, {"$set": SktResultSet})
     kt.update_one({'_id': ObjectId('6330017d0af9348ced24899f')}, {"$set": KtResultSet})

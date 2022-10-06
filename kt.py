@@ -69,3 +69,5 @@ def kt_image():
     return img_list
 
 
+driver.quit()
+
