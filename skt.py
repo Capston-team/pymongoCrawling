@@ -17,35 +17,35 @@ def skt_date():
     date_events = soup.find_all('div', attrs={"data-move-scroll": "DISCOUNT_20221005_WEEK_BENEFIT"})
 
     for event in date_events:
-        title = event.find_all(attrs={'class': 'benefit-date'})
+        date = event.find_all(attrs={'class': 'benefit-date'})
 
         # event에서 텍스트를 읽어옴, 제목을 읽어오는 것
         # title = str(title.select('span'))
-        title = str(title)
-        title = re.sub('<.+?>', '', title, 0).strip()
-        title = re.sub("\\[", '', title, 0)
-        title = re.sub("]", '', title, 0)
-        title = title.split(', ')
+        date = str(date)
+        date = re.sub('<.+?>', '', date, 0).strip()
+        date = re.sub("\\[", '', date, 0)
+        date = re.sub("]", '', date, 0)
+        date = date.split(', ')
 
         remove_word = "week1 혜택"
         remove_word2 = "유의 사항"
         remove_word3 = "Day2 혜택"
 
         # 해당 word가 title 리스트에서 remove_word, remove_word2에 해당한다면 제거
-        for word in title:
+        for word in date:
             if remove_word in word:
-                title.remove(word)
+                date.remove(word)
             if remove_word2 in word:
-                title.remove(word)
+                date.remove(word)
 
         # title 리스트에 해당 인덱스의 문자열에 remove_word, remove_word2가 있다면 제거, 공백 제거 후 반환
-        for i, word in enumerate(title):
+        for i, word in enumerate(date):
             if remove_word in word:
-                title[i] = word.strip(remove_word)
+                date[i] = word.strip(remove_word)
             if remove_word2 in word:
-                title[i] = word.strip(remove_word2)
+                date[i] = word.strip(remove_word2)
 
-        return title
+        return date
 
 
 # SKT 이벤트 제목, 상세설명 크롤링

@@ -22,8 +22,8 @@ webdriver_options.add_argument("--window-size=1920,1080")
 webdriver_options.add_argument("--disable-setuid-sandbox")
 webdriver_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
-driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=webdriver_options)
-# driver = webdriver.Chrome(executable_path=r'/Users/10cm_mocha/Downloads/chromedriver', options=webdriver_options)
+# driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=webdriver_options)
+driver = webdriver.Chrome(executable_path=r'/Users/10cm_mocha/Downloads/chromedriver', options=webdriver_options)
 driver.get('https://event.kt.com/html/event/ongoing_event_list.html')
 
 # 암시적 대기 - 페이지가 로드될 때까지 기다리다가 실행해라.
@@ -41,7 +41,8 @@ next_button = driver.find_element(by=By.XPATH, value='//*[@id="cfmClContents"]/d
 
 def kt_title():
     title_list = []
-    title = WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CLASS_NAME, "title")))
+    # title = WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CLASS_NAME, "title")))
+    title = driver.find_elements(by=By.CLASS_NAME, value="title")
     for element in title:
         title_list.append(element.text)
 
@@ -50,7 +51,8 @@ def kt_title():
 
 def kt_date():
     date_list = []
-    date = WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CLASS_NAME, "date")))
+    # date = WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CLASS_NAME, "date")))
+    date = driver.find_elements(by=By.CLASS_NAME, value="date")
     for element in date:
         date_list.append(element.text)
 
