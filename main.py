@@ -220,9 +220,9 @@ def setEventList():
     kt = dbname['kt']
     lg = dbname['lg']
 
-    print(skt_dict())
-    print(kt_dict())
-    print(lg_dict())
+    # print(skt_dict())
+    # print(kt_dict())
+    # print(lg_dict())
 
     print("db에 업데이트 중...")
     skt.update_one({'_id': ObjectId('633007e552ef499751ceb548')}, {"$set": skt_dict()})
