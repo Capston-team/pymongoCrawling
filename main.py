@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 import certifi
 from apscheduler.schedulers.blocking import BlockingScheduler
+from apscheduler.schedulers.background import BackgroundScheduler
 import re
 import requests
 from bs4 import BeautifulSoup
@@ -16,7 +17,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-sched = BlockingScheduler(timezone='Asia/Seoul')
+sched = BackgroundScheduler(timezone='Asia/Seoul')
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -209,30 +210,38 @@ def lg_dict():
     return dict({'title': title_list, 'date': date_list, 'img': img_list})
 
 
-@app.route('/')
+@app.route('/SKT')
 @sched.scheduled_job('interval', hours=24)
-def setEventList():
-    print("setEventList 진입")
+def setSktEventList():
     dbname = get_database()
-    print("DB 연결 완료")
-
     skt = dbname['skt']
-    kt = dbname['kt']
-    lg = dbname['lg']
-
-    # print(skt_dict())
-    # print(kt_dict())
-    # print(lg_dict())
-
-    print("db에 업데이트 중...")
+    print(skt_dict())
     skt.update_one({'_id': ObjectId('633007e552ef499751ceb548')}, {"$set": skt_dict()})
+    return 'setEventList - Successful update SKT event list'
+
+
+@app.route("/KT")
+@sched.scheduled_job('interval', hours=24)
+def setKtEventList():
+    dbname = get_database()
+    print(kt_dict())
+    kt = dbname['kt']
     kt.update_one({'_id': ObjectId('6330017d0af9348ced24899f')}, {"$set": kt_dict()})
+
+    return 'setEventList - Successful update KT event list'
+
+
+@app.route("/LG")
+@sched.scheduled_job('interval', hours=24)
+def setLgEventList():
+    dbname = get_database()
+    lg = dbname['lg']
+    print(lg_dict())
     lg.update_one({'_id': ObjectId('6336ea180ad3309313d9bfc3')}, {"$set": lg_dict()})
-    print("업데이트 완료")
-
-    return 'setEventList - Successful update event list'
+    return 'setEventList - Successful update LG event list'
 
 
+# 현재 BlockingScheduler 방식 사용 중 하지만 스케줄러가 여러게 이므로 backgroundScheduler 방식 사용 고려 해야함
 if __name__ == "__main__":
     sched.start()
     app.run(host="0.0.0.0")

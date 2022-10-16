@@ -73,4 +73,8 @@ def lg_image():
     return img_list
 
 
+print(lg_title())
+print(lg_date())
+print(lg_image())
+
 driver.quit()

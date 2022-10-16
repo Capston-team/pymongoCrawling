@@ -71,5 +71,9 @@ def kt_image():
     return img_list
 
 
+print(kt_title())
+print(kt_date())
+print(kt_image())
+
 driver.quit()
 
