@@ -112,7 +112,10 @@ def kt_dict():
     webdriver_options.add_argument("--disable-setuid-sandbox")
     webdriver_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
+    # heroku deploy driver
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=webdriver_options)
+
+    # local deploy driver
     # driver = webdriver.Chrome(executable_path=r'/Users/10cm_mocha/Downloads/chromedriver', options=webdriver_options)
     driver.get('https://event.kt.com/html/event/ongoing_event_list.html')
 
