@@ -215,7 +215,7 @@ def lg_dict():
 def setSktEventList():
     dbname = get_database()
     skt = dbname['skt']
-    print(skt_dict())
+    # print(skt_dict())
     skt.update_one({'_id': ObjectId('633007e552ef499751ceb548')}, {"$set": skt_dict()})
     return 'setEventList - Successful update SKT event list'
 
@@ -224,7 +224,7 @@ def setSktEventList():
 @sched.scheduled_job('interval', hours=24)
 def setKtEventList():
     dbname = get_database()
-    print(kt_dict())
+    # print(kt_dict())
     kt = dbname['kt']
     kt.update_one({'_id': ObjectId('6330017d0af9348ced24899f')}, {"$set": kt_dict()})
 
@@ -236,7 +236,7 @@ def setKtEventList():
 def setLgEventList():
     dbname = get_database()
     lg = dbname['lg']
-    print(lg_dict())
+    # print(lg_dict())
     lg.update_one({'_id': ObjectId('6336ea180ad3309313d9bfc3')}, {"$set": lg_dict()})
     return 'setEventList - Successful update LG event list'
 
